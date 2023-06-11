@@ -18,6 +18,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], function () {
+    Route::get('/unapproved', function() {
+        return view('admin.unapproved');
+    })->middleware(['auth', 'verified'])->name('admin.unapproved');
+});
+
+
+Route::get('/users', function() {
+    return view('admin.unapproved');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
