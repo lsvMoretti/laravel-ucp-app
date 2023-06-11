@@ -16,6 +16,10 @@ class UnapprovedUsers extends Component
 
     public function getUnapprovedUsers()
     {
+//        $user = User::find(2);
+//        $user->approved = false;
+//        $user->save();
+
         $this->unapprovedUsers = User::where('approved', false)->get();
     }
 
@@ -25,7 +29,9 @@ class UnapprovedUsers extends Component
         $user->approved = true;
         $user->save();
 
-        $this->getUnapprovedUsers();
+        session()->flash('message', "$user->username has been approved!");
+
+        return redirect('admin/unapproved');
     }
     public function render()
     {
