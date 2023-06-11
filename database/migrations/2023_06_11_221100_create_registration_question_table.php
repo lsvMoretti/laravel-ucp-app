@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('characters', function (Blueprint $table) {
+        Schema::create('registration_questions', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->longText('story');
-//            $table->bigInteger('user_id')->unsigned(); // This will create the user_id column
-//            $table->foreign('user_id')->references('id')->on('users');
+            $table->string('question');
             $table->timestamps();
         });
     }
@@ -26,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('characters');
+        Schema::dropIfExists('registration_questions');
     }
 };

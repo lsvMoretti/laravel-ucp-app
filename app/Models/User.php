@@ -48,4 +48,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Character::class);
     }
+
+    public function registrationAnswers():HasMany{
+        return $this->hasMany(RegistrationAnswer::class);
+    }
 }

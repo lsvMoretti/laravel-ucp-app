@@ -24,10 +24,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
     })->middleware(['auth', 'verified'])->name('admin.unapproved');
 });
 
-
-Route::get('/users', function() {
-    return view('admin.unapproved');
-});
+Route::get('registration-quiz', function() {
+    return view('registration-quiz');
+})->middleware(['auth', 'verified'])->name('registration.quiz');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
