@@ -14,7 +14,7 @@ class RegistrationForm extends Component
 
     public function mount()
     {
-        $questions = RegistrationQuestion::all();
+        $questions = RegistrationQuestion::where('is_active', true)->get();
 
         foreach ($questions as $question){
             $this->answers[$question->id] = '';
@@ -35,7 +35,7 @@ class RegistrationForm extends Component
 
     public function render()
     {
-        $questions = RegistrationQuestion::all();
+        $questions = RegistrationQuestion::where('is_active', true)->get();
         return view('livewire.registration-form', compact('questions'));
     }
 }

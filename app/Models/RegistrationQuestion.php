@@ -10,6 +10,16 @@ class RegistrationQuestion extends Model
 {
     protected $table = "registration_questions";
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        'question',
+        'is_active'
+    ];
+
     public function answers():HasMany{
         return $this->hasMany(RegistrationAnswer::class);
     }
