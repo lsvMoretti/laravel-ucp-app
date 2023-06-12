@@ -36,10 +36,14 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+
+        $approved = env('FEATURE_APPROVE_USER', true) ? false : true;
+
         $user = User::create([
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'approved' => $approved
         ]);
 
         event(new Registered($user));

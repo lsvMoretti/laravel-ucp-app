@@ -32,11 +32,12 @@
                         </x-slot>
 
                         <x-slot name="content">
-
+                            @if (env('FEATURE_APPROVE_USER', true))
                             <!-- Unapproved Users -->
                             <x-dropdown-link :href="route('admin.unapproved')" :active="request()->routeIs('admin.unapproved')">
                                 {{ __('Unapproved Users') }}
                             </x-dropdown-link>
+                            @endif
                         </x-slot>
                     </x-dropdown>
                 </div>

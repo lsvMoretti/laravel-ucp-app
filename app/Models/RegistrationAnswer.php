@@ -8,7 +8,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class RegistrationAnswer extends Model
 {
+
     protected $table = "registration_answers";
+
+    /**
+     * Statuses
+     * 0 - Not Answered / Reviewed
+     * 1 - Denied / Submit Ban Appeal
+     * 2 - Denied / Redo Quiz
+     * 3 - Accepted
+     */
 
     /**
      * The attributes that are mass assignable.
@@ -19,7 +28,8 @@ class RegistrationAnswer extends Model
         'question_id',
         'user_id',
         'answer',
-        'status'
+        'status',
+        'submission_id'
     ];
 
     public function question() : BelongsTo

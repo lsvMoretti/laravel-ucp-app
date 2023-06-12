@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\RegistrationAnswer;
 use App\Models\RegistrationQuestion;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 
 class RegistrationForm extends Component
@@ -25,8 +26,14 @@ class RegistrationForm extends Component
     {
         $user = Auth::user();
 
+        $lastSubmission = RegistrationAnswer::max('submission_id');
+        if(empty($lastSubmission)){
+            $lastSubmission = 0;
+        }
+        $lastSubmission = $lastSubmission += 1;
+
         foreach($this->answers as $questionId => $answerText) {
-            $answer = new RegistrationAnswer(['answer' => $answerText, 'question_id' => $questionId]);
+            $answer = new RegistrationAnswer(['answer' => $answerText, 'question_id' => $questionId, 'submission_id' => $lastSubmission]);
             $user->registrationAnswers()->save($answer);
         }
 
@@ -35,7 +42,41 @@ class RegistrationForm extends Component
 
     public function render()
     {
+        $user = Auth::user();
         $questions = RegistrationQuestion::where('is_active', true)->get();
+
+        $answers = $user->registrationAnswers()->orderBy('created_at', 'desc')->get();
+        if(empty($answers)){
+            return view('livewire.registration-form', compact('questions'));
+        }
+
+        $answersGroupedBySubmission = $answers->groupBy('submission_id');
+
+        $statusesBySubmission = $answersGroupedBySubmission->map(function ($answers, $submissionId) {
+            return $answers->first()->status;
+        });
+        $lastSubmissionStatus = (int)$statusesBySubmission->first();
+
+        switch ($lastSubmissionStatus){
+            case 0:
+                $message = "Your application hasn't been reviewed yet.";
+                session()->flash('error', $message);
+                return view('livewire.emptyview');
+            case 1:
+                $message = "Your application has been denied. Please submit a ban appeal";
+                session()->flash('error', $message);
+                return view('livewire.emptyview');
+            case 2:
+                $message = "Your previous application has been denied. Please re-submit.";
+                session()->flash('error', $message);
+                break;
+            case 3:
+                $message = "Your application has been accepted!";
+                session()->flash('success', $message);
+                return view('livewire.emptyview');
+            default:
+                return view('livewire.emptyview');
+        }
         return view('livewire.registration-form', compact('questions'));
     }
 }
