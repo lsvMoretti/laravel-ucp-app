@@ -39,6 +39,13 @@
                             </x-dropdown-link>
                             @endif
                         </x-slot>
+
+                        <x-slot name="content">
+                            <!-- Registration Responses -->
+                            <x-dropdown-link :href="route('admin.registration-responses')" :active="request()->routeIs('admin.registration-responses')">
+                                {{ __('Registrations') }}
+                            </x-dropdown-link>
+                        </x-slot>
                     </x-dropdown>
                 </div>
 

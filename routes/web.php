@@ -22,6 +22,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'verified']], functi
     Route::get('/unapproved', function() {
         return view('admin.unapproved');
     })->middleware(['auth', 'verified'])->name('admin.unapproved');
+
+    Route::get('/registrations', function() {
+        return view('admin.registration-responses');
+    })->middleware(['auth', 'verified'])->name('admin.registration-responses');
+
+    Route::get('/reviewregistration/{submissionId}', function($submissionId) {
+        return view('admin.registration-review', ['submissionId' => $submissionId]);
+    })->middleware(['auth', 'verified'])->name('admin.registration-review');
 });
 
 Route::get('registration-quiz', function() {
