@@ -10,7 +10,6 @@ use Livewire\Component;
 
 class RegistrationForm extends Component
 {
-
     public $answers = [];
 
     public function mount()
@@ -61,11 +60,11 @@ class RegistrationForm extends Component
             case 0:
                 $message = "Your application hasn't been reviewed yet.";
                 session()->flash('error', $message);
-                return view('livewire.emptyview');
+                return view('livewire.message-area');
             case 1:
                 $message = "Your application has been denied. Please submit a ban appeal";
                 session()->flash('error', $message);
-                return view('livewire.emptyview');
+                return view('livewire.message-area');
             case 2:
                 $message = "Your previous application has been denied. Please re-submit.";
                 session()->flash('error', $message);
@@ -73,9 +72,9 @@ class RegistrationForm extends Component
             case 3:
                 $message = "Your application has been accepted!";
                 session()->flash('success', $message);
-                return view('livewire.emptyview');
+                return view('livewire.message-area');
             default:
-                return view('livewire.emptyview');
+                return view('livewire.message-area');
         }
         return view('livewire.registration-form', compact('questions'));
     }

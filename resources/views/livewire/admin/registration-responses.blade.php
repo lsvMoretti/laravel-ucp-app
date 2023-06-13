@@ -16,7 +16,7 @@
                     @if (count($pendingResponses) > 0)
                         <tbody class="bg-white divide-y divide-gray-200">
                         @foreach ($pendingResponses as $submission)
-                            <tr wire:click="showSubmission({{ json_encode($submission) }}" class="cursor-pointer hover:bg-gray-100">
+                            <tr wire:click="showSubmission({{ $submission[0]['submission_id'] }})" class="cursor-pointer hover:bg-gray-100">
                             <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm text-gray-900 text-center">
                                         {{ $submission[0]['user']['username'] }}

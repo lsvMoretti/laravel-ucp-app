@@ -31,14 +31,14 @@
                 </div>
             @endforeach
             <div class="flex justify-between">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" style="color: white; background-color: blue;">
-                    Button 1
+                <button wire:click="approveSubmission" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" style="color: white; background-color: green;">
+                    Approve
                 </button>
-                <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" style="color: white; background-color: green;">
-                    Button 2
+                <button wire:click="reapplySubmission" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" style="color: white; background-color: blue;">
+                    Reapply
                 </button>
-                <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                    Button 3
+                <button wire:click="submitBanAppeal" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                    Submit Ban Appeal
                 </button>
             </div>
         </div>
