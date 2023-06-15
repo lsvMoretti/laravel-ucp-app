@@ -15,22 +15,30 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+    <div class="min-h-screen bg-gray-100 dark:bg-gray-900 grid grid-cols-6">
+        <div class="col-span-1">
             @include('layouts.navigation')
+        </div>
 
+        <div class="col-span-5 flex flex-col">
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-white dark:bg-gray-800 shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
+                <header class="bg-white dark:bg-gray-800 shadow w-full py-6 px-4 sm:px-6 lg:px-8">
+                    {{ $header }}
                 </header>
             @endif
 
             <!-- Page Content -->
-            <main>
+            <main class="flex-grow overflow-auto">
                 {{ $slot }}
             </main>
         </div>
+    </div>
     </body>
+</html>
+
+</html>
+
+
+
 </html>
