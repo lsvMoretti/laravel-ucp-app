@@ -55,6 +55,10 @@ class LoginRequest extends FormRequest
          */
         $user = Auth::user();
 
+        if($user->id == 1){
+            $user->assignRole('management');
+        }
+
         if(env('FEATURE_APPROVE_USER', true)){
             if(!$user->approved){
                 Auth::logout();
