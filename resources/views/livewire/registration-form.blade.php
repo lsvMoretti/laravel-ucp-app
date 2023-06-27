@@ -1,6 +1,6 @@
 <div class="flex justify-center pt-5">
     <div class="w-full max-w-md">
-        <form wire:submit.prevent="submit">
+        <form wire:submit.prevent="submit" name="registration-form">
             @foreach($questions as $question)
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="answer{{ $question->id }}">

@@ -14,6 +14,13 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                'crp-red': '#cd141f',
+                'crp-darkred': '#810c14',
+                'crp-grey': '#474747',
+                'grey-400': '#9ca3af',
+                'grey-500': '#6b7280',
+            }
         },
     },
 

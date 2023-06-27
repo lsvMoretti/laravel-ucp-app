@@ -33,11 +33,12 @@ class RegistrationReview extends Component
 
     public function approveSubmission()
     {
-        $responses = RegistrationAnswer::where('submission_id', $this->submissionId)->get();;
+        $responses = RegistrationAnswer::where('submission_id', $this->submissionId)->with('user')->get();
         foreach ($responses as $response){
             $response->status = 3;
             $response->save();
         }
+        $responses->first()->user->assignRole('registered');
         session()->flash('success', 'The application has been approved');
         return redirect()->route('admin.registration-responses');
     }

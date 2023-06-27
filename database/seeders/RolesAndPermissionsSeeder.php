@@ -17,6 +17,8 @@ class RolesAndPermissionsSeeder extends Seeder
         $viewRegistrationPerm = Permission::create(['name' => 'view registrations']);
 
         // Create Roles and assign created permissions
+        $registeredRole = Role::create(['name' => 'registered']);
+
         $supportRole = Role::create(['name' => 'support']);
         $supportRole->givePermissionTo($viewRegistrationPerm);
 

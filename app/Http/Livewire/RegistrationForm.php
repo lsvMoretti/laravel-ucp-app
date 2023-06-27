@@ -29,14 +29,15 @@ class RegistrationForm extends Component
         if(empty($lastSubmission)){
             $lastSubmission = 0;
         }
-        $lastSubmission = $lastSubmission += 1;
+        $lastSubmission = $lastSubmission + 1;
 
         foreach($this->answers as $questionId => $answerText) {
             $answer = new RegistrationAnswer(['answer' => $answerText, 'question_id' => $questionId, 'submission_id' => $lastSubmission]);
             $user->registrationAnswers()->save($answer);
         }
-
-        return redirect()->to('/thank-you');
+        Log::debug('Registration submitted');
+        session()->flash('success', 'Your application has been submitted');
+        return redirect()->route('dashboard');
     }
 
     public function render()
@@ -54,8 +55,10 @@ class RegistrationForm extends Component
         $statusesBySubmission = $answersGroupedBySubmission->map(function ($answers, $submissionId) {
             return $answers->first()->status;
         });
+        if($statusesBySubmission->isEmpty()){
+            return view('livewire.registration-form', compact('questions'));
+        }
         $lastSubmissionStatus = (int)$statusesBySubmission->first();
-
         switch ($lastSubmissionStatus){
             case 0:
                 $message = "Your application hasn't been reviewed yet.";

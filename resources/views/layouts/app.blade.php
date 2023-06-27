@@ -13,6 +13,7 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+        <script src="https://kit.fontawesome.com/d3272a6c6d.js" crossorigin="anonymous"></script>
     </head>
     <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900 grid grid-cols-6">
@@ -20,7 +21,7 @@
             @include('layouts.navigation')
         </div>
 
-        <div class="col-span-5 flex flex-col">
+        <div class="col-span-5 -mx-2 flex flex-col">
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-white dark:bg-gray-800 shadow w-full py-6 px-4 sm:px-6 lg:px-8">
@@ -35,10 +36,4 @@
         </div>
     </div>
     </body>
-</html>
-
-</html>
-
-
-
 </html>

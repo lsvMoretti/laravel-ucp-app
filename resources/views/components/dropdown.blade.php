@@ -1,4 +1,4 @@
-@props(['align' => 'right', 'menuWidth' => '48', 'contentClasses' => 'py-1 bg-gray-800 dark:bg-gray-700'])
+@props(['align' => 'left', 'menuWidth' => '48', 'contentClasses' => ''])
 
 @php
     switch ($align) {
@@ -37,10 +37,10 @@
          x-transition:leave="transition ease-in duration-75"
          x-transition:leave-start="transform opacity-100 scale-100"
          x-transition:leave-end="transform opacity-0 scale-95"
-         class="absolute z-50 mr-4 {{ $width }} rounded-md shadow-lg {{ $alignmentClasses }}"
+         class="relative z-50 mr-6 {{ $width }} rounded-md {{ $alignmentClasses }}"
          style="display: none;"
          @click="open = false">
-        <div class="rounded-md ring-1 ring-black ring-opacity-5 text-white bg-gray-800 {{ $contentClasses }}">
+        <div class="rounded-md text-white ml-3 p-2 hover:bg-crp-darkred $contentClasses }}">
             {{ $content }}
         </div>
     </div>
